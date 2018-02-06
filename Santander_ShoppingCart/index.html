@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Santander Shopping Cart</title>
+
+    <!--Booststrap and CSS Files-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="resources/css/style.css" />
+
+    <!--Angular and Angular Routing-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>        
+
+    <!-- Main module -->
+    <script src="app/app.module.js"></script>
+
+    <!-- Route Config -->    
+    <script src="app/config/app.config.state-provider.js"></script>
+
+    <!-- Services -->
+    <script src="app/components/shoppingCart/shoppingCartService.js"></script>
+
+    <!-- Controllers -->
+    <script src="app/components/shoppingCart/shoppingCartController.js"></script>
+    <script src="app/components/registerAndBuy/registerAndBuyController.js"></script>
+
+    <!-- Directives -->
+    <script src="app/components/registerAndBuy/registerAndBuyDirective.js"></script>
+            
+    <!-- Google Api Autocomplete -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKKU6p7HI-ErzyqIgRKCkNEYDwIjZABTc&libraries=places" async defer></script>
+</head>
+
+<body ng-app="MainApp" id="container">
+    <div class="ui-layout-center">        
+        <header>
+            <!--<div ng-include='"app/commons/templates/header.html"'></div>-->
+        </header>        
+        <div class="container">
+            <ui-view></ui-view>
+        </div>        
+        <footer>
+            <!--<div ng-include='"app/commons/templates/footer.html"'></div>-->
+        </footer>
+    </div>        
+</body>
+</html>

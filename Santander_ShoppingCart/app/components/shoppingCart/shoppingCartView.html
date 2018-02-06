@@ -1,0 +1,151 @@
+﻿<div class="table container-margin">
+    <div class="row" id="title">
+        <div class="pc-view data divider-bottom">
+            <div class="MyCart">
+                <h1>My Santander Shopping Cart</h1>
+            </div>
+        </div>
+        <div class="small-device-view thick-divider-bottom spacing">
+            <div class="data col6 align-left MyCart">
+                My Santander Shopping Cart
+            </div>            
+        </div>
+    </div>
+    <div class="row">
+        <div class="pc-view table thick-divider-bottom spacing">
+            <div class="row ">
+                <div class="data col7 align-left"> {{totalItems}} ITEMS</div>                
+                <div class="data col2 align-left">QUANTITY</div>
+                <div class="data col2 align-left">TOTAL PRICE</div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-repeat="item in items">
+        <div class="table" ng-class="{'thick-divider-bottom':$last,'divider-bottom':!$last}">
+            <div class="row ">
+                <div class="data col3 align-left">
+                    <img ng-src={{item.img}} alt="item.p_name" style="width:200px; height:200px;" />
+                </div>
+                <div class="data col7 valign-middle">
+                    <div class="table">
+                        <div class="row prod-spec">
+                            <div class="data col6 align-left">
+                                <div class="nameItem">{{item.name}}</div>
+                                <div class="opacity">Description: {{item.description}}</div>
+                                <div class="opacity">Unit Price: <span>{{item.currency}}</span>{{item.price}}</div>                                
+                                <div class="small-device-view spacing big-font">Quantity:
+                                    <button ng-click="decrement(item, $index)" ng-disabled="item.quantity<=1">-</button>
+                                    <input type='text' name='quantity' class="qty" ng-model="item.quantity" size="1" disabled />
+                                    <button ng-click="increment(item, $index)">+</button>
+                                </div>
+                                <div class="small-device-view spacing big-font">Total Price: <span>{{item.currency}}</span><span ng-bind="item.quantity * item.price"></span></div>
+                            </div>
+                            <div class="pc-view data col2 align-left">
+                                <button ng-click="decrement(item, $index)" ng-disabled="item.quantity<=1">-</button>
+                                <input type='text' name='quantity' class="qty" ng-model="item.quantity" size="1" disabled/>
+                                <button ng-click="increment(item, $index)">+</button>
+                            </div>
+                            <div class="pc-view data col2"><span>{{item.currency}}</span><span ng-bind="item.quantity * item.price"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div class="pc-view" ng-if="$last">            
+            <div id="right-section" class="container-margin">
+                <div class="table">
+                    <div class="row promo-code spacing">
+                        <div class="data col4 align-left ">
+                            Enter your promotion code:
+                        </div>
+                        <div class="data col4">
+                            <input type="text" placeholder="Promotion code" ng-model="code" />
+                        </div>
+                        <div class="data col2">
+                            <button class="btn" ng-click="applyCode(code)">Apply</button>
+                        </div>
+                    </div>
+                    <div class="row spacing">
+                        <div class="data col4 align-left ">
+                            <p>Subtotal</p>
+                        </div>
+                        <div class="data col4 ">
+                        </div>
+                        <div class="data col4" ng-bind="'$' + subTotal">
+                        </div>
+                    </div>
+                    <div class="row spacing">
+                        <div class="data col4 align-left ">
+                            <p ng-show="discount > 0">Promotion code <b>{{code}}</b> Applied</p>
+                            <p ng-show="discount === 0">Promotion code not found</p>
+                        </div>
+                        <div class="data col4 ">
+                        </div>
+                        <div class="data col4" ng-bind="'-$'+ discount">
+                        </div>
+                    </div>                    
+                    <div class="row thick-divider-bottom spacing">
+                        <div class="data col4 align-left ">
+                            <p class="nameItem">Total:</p>                            
+                        </div>
+                        <div class="data col4 ">
+                        </div>
+                        <div class="data col4 nameItem" ng-bind="'$' + total">
+                        </div>
+                    </div>
+                    <div class="row spacing">
+                        <div class="data col4">
+                        </div>                        
+                        <div class="data col4 ">
+                            <input type="button" value="Continue" class="btn" ng-click="continue()" />
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <div class="small-device-view " ng-if="$last">
+            <div class="table ">
+                <div class="row ">
+                    <div class="data big-font extra-spacing">Enter your promotion code:</div>
+                </div>
+                <div class="row data extra-spacing">
+                    <input type="text" placeholder="Promotion code" ng-model="code" />&nbsp;&nbsp;
+                    <button class="btn" ng-click="applyCode(code)">Apply</button>
+                </div>
+            </div>
+            <div class="table ">
+                <div class="row extra-spacing">
+                    <div class="data col6 align-left ">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="data col4" ng-bind="'$' + subTotal">
+                    </div>
+                </div>
+                <div class="row extra-spacing">
+                    <div class="data col6 align-left ">
+                        <p ng-show="discount > 0">Promotion code <b>{{code}}</b> APPLIED</p>
+                        <p ng-show="discount === 0">Promotion code not found</p>
+                    </div>
+                    <div class="data col4" ng-bind="'-$'+ discount">
+                    </div>
+                </div>                
+                <div class="row  spacing">
+                    <div class="data col6 align-left ">
+                        <p class="nameItem">
+                            Total:<br />                            
+                        </p>
+                    </div>
+                    <div class="data col4 nameItem" ng-bind="'$' + total">
+                    </div>
+                </div>
+            </div>
+            <div class="table">
+                <div class="row extra-spacing">
+                    <div class="data col4 ">
+                        <input type="button" value="Continue" class="btn-primary btn-lg btn-block" ng-click="continue()"/>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
